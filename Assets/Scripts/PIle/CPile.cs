@@ -4,27 +4,19 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Pile : MonoBehaviour
+public class CPile : MonoBehaviour
 {
-    public int id;
+    [HideInInspector] public int id;
     public Stack<CardData> cardStack;
-    private bool showTopSide;
+    public bool showTopSide;
 
     public void Shuffle()
     {
         
     }
-    public void Transfer(Pile other)
+    public void Transfer(CPile other)
     {
 
-    }
-    public void Clear()
-    {
-
-    }
-    public void Init()
-    {
-        
     }
 
     public int GetCardIndex(CardData data)

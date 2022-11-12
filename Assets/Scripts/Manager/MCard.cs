@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using System;
 
 public class MCard : MonoBehaviour
 {
@@ -8,6 +10,11 @@ public class MCard : MonoBehaviour
 
     [HideInInspector] public List<CardData> cardList;
 
+
+    public static void InitializeCards()
+    {
+        
+    }
 
     private void Awake()
     {

@@ -20,7 +20,7 @@ public class CPlayer : MonoBehaviour
         FetchCards(MCard.Instance.cardList);
     }
 
-    public void TakeCard(Pile pile)
+    public void TakeCard(CPile pile)
     {
         // take card from pile to current player hand
         int topCardIndex = pile.cardStack.Pop().GetIndex();
@@ -30,7 +30,7 @@ public class CPlayer : MonoBehaviour
         cardInGlobalArr.location = id;
         cardInGlobalArr.position = currentCards.Count - 1;
     }
-    public void PlaceCard(CardData card, Pile pile)
+    public void PlaceCard(CardData card, CPile pile)
     {
         // place card to pile
         int cardIndex = card.GetIndex();
