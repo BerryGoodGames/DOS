@@ -5,8 +5,7 @@ using UnityEngine;
 public abstract class CCard : MonoBehaviour
 {
     public abstract int AmountPerColor { get; }
-    public CardType cardType;
-    public CardColor cardColor;
+    public CardData data;
 
 
     public void Place()

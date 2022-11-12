@@ -13,6 +13,7 @@ public class MLobby : MonoBehaviourPunCallbacks
 
     // editor
     [SerializeField] private TMP_InputField nicknameInput;
+    [SerializeField] private TMP_Text connectBtnText;
     [SerializeField] private TMP_InputField roomInput;
     [SerializeField] private GameObject lobbyPanel;
     [SerializeField] private GameObject roomPanel;
@@ -34,6 +35,8 @@ public class MLobby : MonoBehaviourPunCallbacks
     {
         // get nickname and connect to lobby
         ConnectToLobby(nicknameInput.text);
+
+        connectBtnText.text = "Connecting...";
     }
 
     public static void ConnectToLobby(string nickname)
