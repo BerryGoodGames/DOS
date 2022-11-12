@@ -1,0 +1,4 @@
+public enum CardType 
+{
+    NUMBER, PLUS_TWO, PLUS_ONE_GLOBAL, WILD, WILD_PLUS_FOUR, REVERSE, SWAP, SKIP
+}

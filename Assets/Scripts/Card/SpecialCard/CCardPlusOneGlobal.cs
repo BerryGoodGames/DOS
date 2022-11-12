@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CCard : MonoBehaviour
+public class CCardPlusOneGlobal : CCard
 {
-
+    public override int AmountPerColor => 2;
 }
