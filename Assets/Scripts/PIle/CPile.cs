@@ -6,7 +6,7 @@ using UnityEngine;
 public class CPile : MonoBehaviour
 {
     [HideInInspector] public int id;
-    public Stack<CardData> cardStack;
+    public Stack<CardData> cardStack = new();
     public bool showTopSide;
 
     public void Shuffle()
