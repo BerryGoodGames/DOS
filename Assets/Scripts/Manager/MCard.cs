@@ -42,6 +42,11 @@ public class MCard : MonoBehaviour
                 }
             }
         }
+
+        Instance.DrawPile.Shuffle();
+
+        foreach (CardData data in Instance.DrawPile.cardStack)
+            print(data.GetCardType());
     }
 
     public static T CreateCardGeneric<T>(int type, CardColor color, int location, int position) where T : CCard, new()

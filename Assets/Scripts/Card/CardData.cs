@@ -22,7 +22,6 @@ public class CardData
 
     public CardType GetCardType()
     {
-        Debug.Log(type);
         return type <= 9 ? CardType.NUMBER : (CardType)(type - 10);
     }
 
@@ -48,5 +47,10 @@ public class CardData
     public static void UpdateCardDatasAllClients()
     {
         MGame.Instance.photonView.RPC("ReceiveCardDatas", Photon.Pun.RpcTarget.Others, MCard.Instance.cardList.ToArray());
+    }
+
+    public CardData Clone()
+    {
+        return new(type, color, location, position);
     }
 }
