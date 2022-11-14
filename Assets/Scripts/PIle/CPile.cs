@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CPile : MonoBehaviour
 {
-    [HideInInspector] public int id;
+    public int id;
     public Stack<CardData> cardStack = new();
     public bool showTopSide;
 
