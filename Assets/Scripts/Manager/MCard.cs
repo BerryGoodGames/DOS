@@ -36,17 +36,20 @@ public class MCard : MonoBehaviour
             {
                 for(int i = 0; i < eCard.AmountPerColor; i++)
                 {
-                    CardData data = CreateCard(eCard.cardType, 0, color, 0, position).data;
-                    Instance.DrawPile.cardStack.Push(data);
-                    position++;
+                    int j = eCard.cardType == CardType.NUMBER ? 0 : 9 ;
+
+                    for(; j <= 9; j++)
+                    {
+                        if (eCard.cardType == CardType.NUMBER && i == 1 && j == 0) continue;
+                        CardData data = CreateCard(eCard.cardType, j, color, 0, position).data;
+                        Instance.DrawPile.cardStack.Push(data);
+                        position++;
+                    }
                 }
             }
         }
 
         Instance.DrawPile.Shuffle();
-
-        foreach (CardData data in Instance.DrawPile.cardStack)
-            print(data.GetCardType());
     }
 
     public static T CreateCardGeneric<T>(int type, CardColor color, int location, int position) where T : CCard, new()

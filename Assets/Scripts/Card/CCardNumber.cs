@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class CCardNumber : CCard
 {
-    public int number;
-    public override int AmountPerColor => number == 0 ? 1 : 2;
+    public int Number { 
+        get => data.type; 
+        set { data.type = value; } 
+    }
+    public override int AmountPerColor => 2;
     public override CardType cardType => CardType.NUMBER;
 
 }
