@@ -36,7 +36,7 @@ public class MCard : MonoBehaviour
             {
                 for(int i = 0; i < eCard.AmountPerColor; i++)
                 {
-                    CardData data = CreateCard(eCard.cardType, color, 0, position).data;
+                    CardData data = CreateCard(eCard.cardType, 0, color, 0, position).data;
                     Instance.DrawPile.cardStack.Push(data);
                     position++;
                 }
@@ -44,20 +44,22 @@ public class MCard : MonoBehaviour
         }
     }
 
-    public static T CreateCardGeneric<T>(CardColor color, int location, int position) where T : CCard, new()
+    public static T CreateCardGeneric<T>(int type, CardColor color, int location, int position) where T : CCard, new()
     {
         // creates Card and sets parameters
         T card = new();
 
-        card.data = new((int)card.cardType, color, location, position);
+        if (card.cardType != CardType.NUMBER) type = (int)card.cardType + 10;
+
+        card.data = new(type, color, location, position);
         return card;
     }
 
-    public static CCard CreateCard(CardType cardType, CardColor color, int location, int position)
+    public static CCard CreateCard(CardType cardType, int cardNumber,CardColor color, int location, int position)
     {
         MethodInfo method = typeof(MCard).GetMethod(nameof(MCard.CreateCardGeneric));
         MethodInfo generic = method.MakeGenericMethod(cardType.GetCardType());
-        return (CCard)generic.Invoke(null, new object[] {color, location, position});
+        return (CCard)generic.Invoke(null, new object[] { cardType == CardType.NUMBER? cardNumber : (int)cardType + 10 , color, location, position });
     }
 
     private void Awake()

@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 /// <summary>
 /// Represents one card absolutely
@@ -21,6 +22,7 @@ public class CardData
 
     public CardType GetCardType()
     {
+        Debug.Log(type);
         return type <= 9 ? CardType.NUMBER : (CardType)(type - 10);
     }
 
