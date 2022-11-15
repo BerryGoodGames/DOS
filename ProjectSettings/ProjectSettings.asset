@@ -272,6 +272,7 @@ PlayerSettings:
   m_BuildTargetIcons: []
   m_BuildTargetPlatformIcons: []
   m_BuildTargetBatching: []
+  m_BuildTargetShaderSettings: []
   m_BuildTargetGraphicsJobs:
   - m_BuildTarget: MacStandaloneSupport
     m_GraphicsJobs: 0
@@ -308,6 +309,8 @@ PlayerSettings:
     m_APIs: 10000000
     m_Automatic: 1
   m_BuildTargetVRSettings: []
+  m_DefaultShaderChunkSizeInMB: 16
+  m_DefaultShaderChunkCount: 0
   openGLRequireES31: 0
   openGLRequireES31AEP: 0
   openGLRequireES32: 0
@@ -569,6 +572,7 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
+  webGLPowerPreference: 2
   scriptingDefineSymbols:
     Android: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
     EmbeddedLinux: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
@@ -596,6 +600,7 @@ PlayerSettings:
   allowUnsafeCode: 0
   useDeterministicCompilation: 1
   enableRoslynAnalyzers: 1
+  selectedPlatform: 0
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
   gcIncremental: 1
@@ -659,7 +664,13 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Build: 0
+    Collab: 0
+    Game Performance: 0
+    Purchasing: 0
+    UDP: 0
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -673,11 +684,12 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: cb0a0a81-1927-47ed-ac74-5cd0d2d4334c
+  windowsGamepadBackendHint: 0
+  cloudProjectId: 040d3e8e-5502-49e9-8bba-60fc20e22c43
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: DOS (1)
+  organizationId: lexderi
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 

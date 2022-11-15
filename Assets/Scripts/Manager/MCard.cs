@@ -1,11 +1,12 @@
 using System.Collections;
+using Photon.Pun;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using System;
 using System.Reflection;
 
-public class MCard : MonoBehaviour
+public class MCard : MonoBehaviourPun
 {
     #region VARIABLES
     // singleton
@@ -38,8 +39,9 @@ public class MCard : MonoBehaviour
         InitializeCards();
     }
 
-    public static void InitializeCards()
+    public void InitializeCards()
     {
+        if (!photonView.IsMine) return;
         int position = 0;
         foreach (CCard eCard in existingCards)
         {
@@ -60,7 +62,18 @@ public class MCard : MonoBehaviour
             }
         }
 
-        Instance.DrawPile.Shuffle();
+        DrawPile.Shuffle();
+        photonView.RPC("SyncDrawPile", RpcTarget.Others, DrawPile.cardStack);
+        foreach (CardData data in Instance.DrawPile.cardStack)
+            print(data);
+    }
+
+    [PunRPC]
+    public static void SyncDrawPile(Stack<CardData> drawStack)
+    {
+        Instance.DrawPile.cardStack = drawStack;
+        foreach (CardData data in Instance.DrawPile.cardStack)
+            print(data);
     }
 
     public static CCard CreateCard(CardType cardType, int cardNumber, CardColor color, int location, int position)
