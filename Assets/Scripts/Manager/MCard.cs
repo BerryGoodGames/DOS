@@ -25,19 +25,17 @@ public class MCard : MonoBehaviour
     private void Start()
     {
        existingCards = new CCard[] {
-        MPrefab.Instance.NumberCard.GetComponent<CCard>(),
-        MPrefab.Instance.ReverseCard.GetComponent<CCard>(),
-        MPrefab.Instance.SkipCard.GetComponent<CCard>(),
-        MPrefab.Instance.SwapCard.GetComponent<CCard>(),
-        MPrefab.Instance.PlusOneGlobalCard.GetComponent<CCard>(),
-        MPrefab.Instance.PlusTwoCard.GetComponent<CCard>(),
-        MPrefab.Instance.WildCard.GetComponent<CCard>(),
-        MPrefab.Instance.WildPlusFourCard.GetComponent<CCard>(),
-    };
+           MPrefab.Instance.NumberCard.GetComponent<CCard>(),
+           MPrefab.Instance.ReverseCard.GetComponent<CCard>(),
+           MPrefab.Instance.SkipCard.GetComponent<CCard>(),
+           MPrefab.Instance.SwapCard.GetComponent<CCard>(),
+           MPrefab.Instance.PlusOneGlobalCard.GetComponent<CCard>(),
+           MPrefab.Instance.PlusTwoCard.GetComponent<CCard>(),
+           MPrefab.Instance.WildCard.GetComponent<CCard>(),
+           MPrefab.Instance.WildPlusFourCard.GetComponent<CCard>(),
+       };
 
         InitializeCards();
-
-        print(existingCards.Length);
     }
 
     public static void InitializeCards()
@@ -55,10 +53,10 @@ public class MCard : MonoBehaviour
                     {
                         if (eCard.CardTypeEnum == CardType.NUMBER && i == 1 && j == 0) continue;
                         CardData data = CreateCard(eCard.CardTypeEnum, j, color, 0, position).data;
-                        if (eCard.cardType == CardType.NUMBER && i == 1 && j == 0) continue;
-                        CardData data = CreateCard(eCard.cardType, j, color, 0, position).data;
-                        if (eCard.cardType == CardType.NUMBER && i == 1 && j == 0) continue;
-                        CardData data = new(eCard.cardType, j, color, 0, position);
+                        if (eCard.CardTypeEnum == CardType.NUMBER && i == 1 && j == 0) continue;
+                        CardData data = CreateCard(eCard.CardTypeEnum, j, color, 0, position).data;
+                        if (eCard.CardTypeEnum == CardType.NUMBER && i == 1 && j == 0) continue;
+                        CardData data = new(eCard.CardTypeEnum, j, color, 0, position);
                         Instance.DrawPile.cardStack.Push(data);
                         position++;
                     }
