@@ -568,6 +568,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1312106742}
+  - component: {fileID: 1312106748}
   - component: {fileID: 1312106743}
   - component: {fileID: 1312106746}
   - component: {fileID: 1312106745}
@@ -669,6 +670,26 @@ MonoBehaviour:
   sceneViewId: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &1312106748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312106741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0662bbabb223cab48a2959347a3aa71b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NumberCard: {fileID: 5141875275686765414, guid: bc1d86cdb5e5b3c4dbe57ba9ad228084, type: 3}
+  ReverseCard: {fileID: 133834506043958579, guid: 76aa80b69411d2448b6308722654d46f, type: 3}
+  SkipCard: {fileID: 188938392584903576, guid: 4c74a658e6b546d4ea5e236baa511e57, type: 3}
+  SwapCard: {fileID: 6764608121638723311, guid: 950df06f47fe7aa478abd9208a82b0ea, type: 3}
+  PlusOneGlobalCard: {fileID: 1460550506314620714, guid: a3e3952077251e347a5bfbfc0eb2ba0c, type: 3}
+  PlusTwoCard: {fileID: 4514277109051962927, guid: 265ebc45e28464d4a91e677d392770f4, type: 3}
+  WildCard: {fileID: 4435316735279449100, guid: 478d7f62409e0984aa343615f500b368, type: 3}
+  WildPlusFourCard: {fileID: 8951077526602357498, guid: d6f3d2d399740d1449c32eeb69a30526, type: 3}
 --- !u!1001 &1954728963
 PrefabInstance:
   m_ObjectHideFlags: 0

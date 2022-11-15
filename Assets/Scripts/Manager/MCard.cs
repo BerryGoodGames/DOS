@@ -18,12 +18,23 @@ public class MCard : MonoBehaviour
     // non-editor
     [HideInInspector] public List<CardData> cardList;
     public static readonly Type[] cardTypes = System.Reflection.Assembly.GetExecutingAssembly().GetTypes().Where(x => x.BaseType == typeof(CCard)).ToArray();
-    public static CCard[] existingCards = { new CCardNumber(), new CCardPlusTwo(), new CCardPlusOneGlobal(), new CCardWild(), new CCardWildPlusFour(), new CCardReverse(), new CCardSwap(), new CCardSkip()};
+    public static CCard[] existingCards;
     #endregion
 
 
     private void Start()
     {
+       existingCards = new CCard[] {
+        MPrefab.Instance.NumberCard.GetComponent<CCard>(),
+        MPrefab.Instance.ReverseCard.GetComponent<CCard>(),
+        MPrefab.Instance.SkipCard.GetComponent<CCard>(),
+        MPrefab.Instance.SwapCard.GetComponent<CCard>(),
+        MPrefab.Instance.PlusOneGlobalCard.GetComponent<CCard>(),
+        MPrefab.Instance.PlusTwoCard.GetComponent<CCard>(),
+        MPrefab.Instance.WildCard.GetComponent<CCard>(),
+        MPrefab.Instance.WildPlusFourCard.GetComponent<CCard>(),
+    };
+
         InitializeCards();
     }
 
@@ -41,7 +52,7 @@ public class MCard : MonoBehaviour
                     for(; j <= 9; j++)
                     {
                         if (eCard.cardType == CardType.NUMBER && i == 1 && j == 0) continue;
-                        CardData data = CreateCard(eCard.cardType, j, color, 0, position).data;
+                        CardData data = new(eCard.cardType, j, color, 0, position);
                         Instance.DrawPile.cardStack.Push(data);
                         position++;
                     }
@@ -50,24 +61,6 @@ public class MCard : MonoBehaviour
         }
 
         Instance.DrawPile.Shuffle();
-    }
-
-    public static T CreateCardGeneric<T>(int type, CardColor color, int location, int position) where T : CCard, new()
-    {
-        // creates Card and sets parameters
-        T card = new();
-
-        if (card.cardType != CardType.NUMBER) type = (int)card.cardType + 10;
-
-        card.data = new(type, color, location, position);
-        return card;
-    }
-
-    public static CCard CreateCard(CardType cardType, int cardNumber,CardColor color, int location, int position)
-    {
-        MethodInfo method = typeof(MCard).GetMethod(nameof(MCard.CreateCardGeneric));
-        MethodInfo generic = method.MakeGenericMethod(cardType.GetCardType());
-        return (CCard)generic.Invoke(null, new object[] { cardType == CardType.NUMBER? cardNumber : (int)cardType + 10 , color, location, position });
     }
 
     private void Awake()

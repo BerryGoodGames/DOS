@@ -20,6 +20,14 @@ public class CardData
         this.position = position;
     }
 
+    public CardData(CardType type, int cardNumber, CardColor color, int location, int position)
+    {
+        this.type = type == CardType.NUMBER? cardNumber : (int) type + 10;
+        this.color = color;
+        this.location = location;
+        this.position = position;
+    }
+
     public CardType GetCardType()
     {
         return type <= 9 ? CardType.NUMBER : (CardType)(type - 10);
