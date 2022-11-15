@@ -7,8 +7,6 @@ public class MGame : MonoBehaviour
 {
     public static MGame Instance { get; private set; }
 
-    public static CCard[] existingCards = { new CCardNumber(), new CCardPlusTwo(), new CCardPlusOneGlobal(), new CCardWild(), new CCardWildPlusFour(), new CCardReverse(), new CCardSwap(), new CCardSkip() };
-
     public PhotonView photonView;
 
     [PunRPC]
