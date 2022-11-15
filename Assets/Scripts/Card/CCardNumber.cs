@@ -9,6 +9,5 @@ public class CCardNumber : CCard
         set { data.type = value; } 
     }
     public override int AmountPerColor => 2;
-    public override CardType cardType => CardType.NUMBER;
-
+    public override CardType CardTypeEnum => CardType.NUMBER;
 }

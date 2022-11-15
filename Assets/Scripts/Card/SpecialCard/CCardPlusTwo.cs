@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CCardPlusTwo : CCard
 {
-    public override int AmountPerColor => 2;
-    public override CardType cardType => CardType.PLUS_TWO;
+    public static int amountPerColor = 2;
+    public override int AmountPerColor => amountPerColor;
+    public override CardType CardTypeEnum => CardType.PLUS_TWO;
 }
