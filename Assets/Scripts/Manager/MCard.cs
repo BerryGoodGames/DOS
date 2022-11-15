@@ -42,7 +42,8 @@ public class MCard : MonoBehaviourPun
 
     public void InitializeCards()
     {
-        if (!photonView.IsMine) return;
+        if (!PhotonNetwork.IsMasterClient) return;
+
         int position = 0;
         foreach (CCard eCard in existingCards)
         {
