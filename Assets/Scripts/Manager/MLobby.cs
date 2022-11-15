@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
+using UnityEngine.SceneManagement;
 using Photon.Realtime;
 
 public class MLobby : MonoBehaviourPunCallbacks
@@ -67,9 +68,14 @@ public class MLobby : MonoBehaviourPunCallbacks
         ConnectToRoom(roomInput.text);
     }
 
+    public void OnClickStartGame()
+    {
+        SceneManager.LoadSceneAsync("Game");
+    }
+
     public override void OnJoinedRoom()
     {
-        print("joined room");
+        SceneManager.LoadSceneAsync("Room");
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)

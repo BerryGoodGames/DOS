@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using System;
 using System.Reflection;
+using ExitGames.Client.Photon;
 
 public class MCard : MonoBehaviourPun
 {
@@ -63,15 +64,15 @@ public class MCard : MonoBehaviourPun
         }
 
         DrawPile.Shuffle();
-        photonView.RPC("SyncDrawPile", RpcTarget.Others, DrawPile.cardStack);
+        photonView.RPC("SyncDrawPile", RpcTarget.Others, DrawPile.cardStack.ToArray());
         foreach (CardData data in Instance.DrawPile.cardStack)
-            print(data);
+            print(data.GetCardType());
     }
 
     [PunRPC]
-    public static void SyncDrawPile(Stack<CardData> drawStack)
+    public void SyncDrawPile(CardData[] drawStack)
     {
-        Instance.DrawPile.cardStack = drawStack;
+        Instance.DrawPile.cardStack = new(drawStack);
         foreach (CardData data in Instance.DrawPile.cardStack)
             print(data);
     }
@@ -98,5 +99,7 @@ public class MCard : MonoBehaviourPun
     {
         if (Instance == null) Instance = this;
         else Destroy(this);
+
+        PhotonPeer.RegisterType(typeof(CardData), (byte)'C', CardData.Serialize, CardData.Deserialize);
     }
 }

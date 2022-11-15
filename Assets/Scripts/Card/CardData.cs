@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -27,6 +28,54 @@ public class CardData
         this.location = location;
         this.position = position;
     }
+
+    public CardData(byte[] data)
+    {
+        // If the system architecture is little-endian (that is, little end first),
+        // reverse the byte array.
+        for(int i = 0; i < data.Length; i += 4)
+        {
+            byte[] bytes = data.Skip(i).Take(i + 4).ToArray();
+
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(bytes);
+
+            switch(i)
+            {
+                case 0:
+                    type = BitConverter.ToInt32(bytes, 0);
+                    break;
+                case 4:
+                    color = (CardColor)BitConverter.ToInt32(bytes, 0);
+                    break;
+                case 8:
+                    location = BitConverter.ToInt32(bytes, 0);
+                    break;
+                case 12:
+                    position = BitConverter.ToInt32(bytes, 0);
+                    break;
+            }
+        }
+    }
+
+    #region (DE)SERIALIZE
+    public static byte[] Serialize(object obj)
+    {
+        CardData data = (CardData)obj;
+
+        int[] intArray = { data.type, (int)data.color, data.location, data.position };
+
+        byte[] result = new byte[intArray.Length * sizeof(int)];
+        Buffer.BlockCopy(intArray, 0, result, 0, result.Length);
+
+        return result;
+    }
+
+    public static object Deserialize(byte[] data)
+    {
+        return new CardData(data);
+    }
+    #endregion
 
     public CardType GetCardType()
     {
