@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CCardReverse : CCard
 {
-    public override int AmountPerColor => 2;
-    public override CardType cardType => CardType.REVERSE;
+    public static int amountPerColor = 2;
+    public override int AmountPerColor => amountPerColor;
+    public override CardType CardTypeEnum => CardType.REVERSE;
 }

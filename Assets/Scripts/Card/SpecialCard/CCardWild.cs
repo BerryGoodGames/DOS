@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CCardWild : CCard
 {
-    public override int AmountPerColor => 1;
-    public override CardType cardType => CardType.WILD;
+    public static int amountPerColor = 1;
+    public override int AmountPerColor => amountPerColor;
+    public override CardType CardTypeEnum => CardType.WILD;
 }
