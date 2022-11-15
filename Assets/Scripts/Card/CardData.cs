@@ -37,8 +37,8 @@ public class CardData
         {
             byte[] bytes = data.Skip(i).Take(i + 4).ToArray();
 
-            if (BitConverter.IsLittleEndian)
-                Array.Reverse(bytes);
+            // if (BitConverter.IsLittleEndian)
+            //    Array.Reverse(bytes);
 
             switch(i)
             {

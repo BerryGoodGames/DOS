@@ -74,7 +74,7 @@ public class MCard : MonoBehaviourPun
     {
         Instance.DrawPile.cardStack = new(drawStack);
         foreach (CardData data in Instance.DrawPile.cardStack)
-            print(data);
+            print(data.GetCardType());
     }
 
     public static CCard CreateCard(CardType cardType, int cardNumber, CardColor color, int location, int position)
