@@ -33,12 +33,12 @@ public class CardData
     {
         // If the system architecture is little-endian (that is, little end first),
         // reverse the byte array.
-        for(int i = 0; i < data.Length; i += 4)
+        for (int i = 0; i < data.Length; i += 4)
         {
             byte[] bytes = data.Skip(i).Take(i + 4).ToArray();
 
             // if (BitConverter.IsLittleEndian)
-            //    Array.Reverse(bytes);
+            //   Array.Reverse(bytes);
 
             switch(i)
             {

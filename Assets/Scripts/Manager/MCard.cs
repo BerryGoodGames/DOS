@@ -65,15 +65,21 @@ public class MCard : MonoBehaviourPun
         }
 
         DrawPile.Shuffle();
-        photonView.RPC("SyncDrawPile", RpcTarget.Others, DrawPile.cardStack.ToArray());
-        foreach (CardData data in Instance.DrawPile.cardStack)
+
+        foreach (CardData data in DrawPile.cardStack.ToArray())
+        {
             print(data.GetCardType());
+        }
+
+        print("//////////////");
+
+        photonView.RPC("SyncDrawPile", RpcTarget.All, DrawPile.cardStack.ToArray());
     }
 
     [PunRPC]
     public void SyncDrawPile(CardData[] drawStack)
     {
-        Instance.DrawPile.cardStack = new(drawStack);
+        Instance.DrawPile.cardStack = new(drawStack.Reverse());
         foreach (CardData data in Instance.DrawPile.cardStack)
             print(data.GetCardType());
     }
