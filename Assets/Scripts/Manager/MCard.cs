@@ -66,7 +66,7 @@ public class MCard : MonoBehaviourPun
 
         DrawPile.Shuffle();
 
-        photonView.RPC("SyncDrawPile", RpcTarget.All, DrawPile.cardStack.ToArray());
+        photonView.RPC("SyncDrawPile", RpcTarget.Others, DrawPile.cardStack.ToArray());
     }
 
     [PunRPC]
