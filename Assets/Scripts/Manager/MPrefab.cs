@@ -6,6 +6,8 @@ public class MPrefab : MonoBehaviour
 {
     public static MPrefab Instance { get; private set; }
 
+    public GameObject Player;
+    
     [Header("Cards")]
     public GameObject NumberCard;
     public GameObject ReverseCard;

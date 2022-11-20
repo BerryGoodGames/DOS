@@ -6,6 +6,8 @@ using UnityEngine;
 public class CPile : MonoBehaviour
 {
     public int id;
+    public const int drawPileId = 0;
+    public const int discardPileId = 1;
     public Stack<CardData> cardStack = new();
     public bool showTopSide;
 

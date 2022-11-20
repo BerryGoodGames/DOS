@@ -8,6 +8,7 @@ public class MGame : MonoBehaviour
     public static MGame Instance { get; private set; }
 
     public PhotonView photonView;
+    public Transform playerContainer;
 
     [PunRPC]
     public void ReceiveCardDatas(CardData[] data)

@@ -56,7 +56,7 @@ public class MCard : MonoBehaviourPun
                     for (; j <= 9; j++)
                     {
                         if (eCard.CardTypeEnum == CardType.NUMBER && i == 1 && j == 0) continue;
-                        CardData data = new(eCard.CardTypeEnum, j, color, 0, position);
+                        CardData data = new(eCard.CardTypeEnum, j, color, CPile.drawPileId, position);
                         Instance.DrawPile.cardStack.Push(data);
                         position++;
                     }

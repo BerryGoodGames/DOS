@@ -1,3 +1,4 @@
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine;
 public class CPlayer : MonoBehaviour
 {
     [HideInInspector] public int id;
+    [HideInInspector] public Player photonPlayer;
+    private string nickName;
     private List<CardData> currentCards;
     
     public void FetchCards(List<CardData> data)
