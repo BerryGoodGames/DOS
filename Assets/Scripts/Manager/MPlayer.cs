@@ -5,13 +5,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using ExitGames.Client.Photon;
 
-public class MPlayer : MonoBehaviour
+public class MPlayer : MonoBehaviourPun
 {
     public static MPlayer Instance { get; private set; }
 
-    [HideInInspector] public List<CPlayer> playerList;
+    [HideInInspector] public List<CPlayer> playerList = new();
     public Dictionary<Player, int> playerToId = new();
+    private Dictionary<int, int> photonIdToId = new();
 
     public static CPlayer GetPlayerById(int id)
     {
@@ -29,10 +31,11 @@ public class MPlayer : MonoBehaviour
             // generate avaible id's
             List<int> avaiableIds = Enumerable.Range(CPile.discardPileId + 1, PhotonNetwork.CurrentRoom.PlayerCount).ToList();
 
-            for (int i = 0; i < PhotonNetwork.CurrentRoom.PlayerCount; i++)
+            foreach (Player player in MLobby.photonPlayerList)
             {
                 // Instantiate player
                 CPlayer playerController = Instantiate(MPrefab.Instance.Player, MGame.Instance.playerContainer).GetComponent<CPlayer>();
+                playerList.Add(playerController);
 
                 // generate id for player
                 int index = UnityEngine.Random.Range(0, avaiableIds.Count);
@@ -40,9 +43,13 @@ public class MPlayer : MonoBehaviour
                 avaiableIds.RemoveAt(index);
 
                 // add photonPlayer to player
-                playerController.photonPlayer = PhotonNetwork.LocalPlayer.Get(i);
+                playerController.photonPlayer = player;
+                print(playerController.photonPlayer == null);
                 playerToId.Add(playerController.photonPlayer, playerController.id);
+                photonIdToId.Add(playerController.photonPlayer.ActorNumber, playerController.id);
             }
+
+            photonView.RPC("SyncAllPlayers", RpcTarget.Others, photonIdToId);
         }
     }
 
@@ -66,15 +73,16 @@ public class MPlayer : MonoBehaviour
     }
 
     [PunRPC]
-    public void SyncAllPlayers(Dictionary<Player, int> playerInfo)
+    public void SyncAllPlayers(Dictionary<int, int> playerInfo)
     {
-        foreach (Player player in PhotonNetwork.PlayerList)
+        foreach (Player player in MLobby.photonPlayerList)
         {
             // Instantiate player
             CPlayer playerController = Instantiate(MPrefab.Instance.Player, MGame.Instance.playerContainer).GetComponent<CPlayer>();
+            playerList.Add(playerController);
 
             // set id for player
-            playerController.id = playerInfo[player];
+            playerController.id = playerInfo[player.ActorNumber];
 
             // add photonPlayer to player
             playerController.photonPlayer = player;

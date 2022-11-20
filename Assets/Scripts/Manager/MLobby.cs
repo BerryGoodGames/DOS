@@ -21,6 +21,7 @@ public class MLobby : MonoBehaviourPunCallbacks
 
     // non-editor
     private static string currentRoomName;
+    public static List<Player> photonPlayerList;
     #endregion
 
     private void Awake()
@@ -75,6 +76,7 @@ public class MLobby : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+        photonPlayerList = PhotonNetwork.PlayerList.ToList();
         SceneManager.LoadSceneAsync("Room");
     }
 
@@ -82,6 +84,16 @@ public class MLobby : MonoBehaviourPunCallbacks
     {
         // create room if room doesn't exist
         if (returnCode == 32758 /*Game does not exist*/) PhotonNetwork.CreateRoom(currentRoomName);
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        photonPlayerList.Add(newPlayer);
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        photonPlayerList.Remove(otherPlayer);
     }
     #endregion
 }

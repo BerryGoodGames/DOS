@@ -538,7 +538,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1190406170}
   m_Layer: 0
-  m_Name: Players
+  m_Name: PlayerContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -636,6 +636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   photonView: {fileID: 1312106747}
+  playerContainer: {fileID: 1190406170}
 --- !u!114 &1312106746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -684,6 +685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0662bbabb223cab48a2959347a3aa71b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 182848824995960287, guid: 0089f6b3b202c814e8abac8399b12c4c, type: 3}
   NumberCard: {fileID: 5141875275686765414, guid: bc1d86cdb5e5b3c4dbe57ba9ad228084, type: 3}
   ReverseCard: {fileID: 133834506043958579, guid: 76aa80b69411d2448b6308722654d46f, type: 3}
   SkipCard: {fileID: 188938392584903576, guid: 4c74a658e6b546d4ea5e236baa511e57, type: 3}
