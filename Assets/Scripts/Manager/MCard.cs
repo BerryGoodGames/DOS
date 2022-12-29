@@ -19,7 +19,7 @@ public class MCard : MonoBehaviourPun
 
     // non-editor
     [HideInInspector] public List<CardData> cardList;
-    public static readonly Type[] cardTypes = System.Reflection.Assembly.GetExecutingAssembly().GetTypes().Where(x => x.BaseType == typeof(CCard)).ToArray();
+    public static Type[] cardTypes = System.Reflection.Assembly.GetExecutingAssembly().GetTypes().Where(x => x.BaseType == typeof(CCard)).ToArray();
     public static CCard[] existingCards;
     #endregion
 
